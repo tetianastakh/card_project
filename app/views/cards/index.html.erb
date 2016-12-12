@@ -1,0 +1,8 @@
+<% provide(:title, 'All cards') %>
+<h1 style="text-align: center;">Cards:</h1>
+<div>
+  <% @cards.each do |card| %>
+	  <%= card.firstname %> <%= card.lastname %>
+	  <%= link_to 'Edit', edit_card_path(card.id), class: "btn btn-success" %>
+  <% end %>
+</div>
