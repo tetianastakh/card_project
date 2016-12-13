@@ -6,8 +6,18 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      respond_to do |format|
+        format.html {redirect_to cards_url}
+        format.json { 
+                     User.create(card_params)
+                     render text: User.last.to_json
+                    }
+        format.xml { 
+                     User.create(user_params)
+                     render text: User.last.to_xml
+                    }
+      end
       log_in @user
-      redirect_to cards_url
     else
       render 'new'
     end
@@ -29,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def user_params
     params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
   end

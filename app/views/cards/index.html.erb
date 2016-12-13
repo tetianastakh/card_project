@@ -1,8 +1,15 @@
 <% provide(:title, 'All cards') %>
-<h1 style="text-align: center;">Cards:</h1>
-<div>
+<%= link_to "",new_card_path, class: 'btn btn-success pull-left card-btn glyphicon glyphicon-plus' %>
+<div class="card_list">
   <% @cards.each do |card| %>
-	  <%= card.firstname %> <%= card.lastname %>
-	  <%= link_to 'Edit', edit_card_path(card.id), class: "btn btn-success" %>
+    <div class="card card-block">
+	    <%= link_to '', edit_card_path(card.id), class: "pull-right glyphicon glyphicon-pencil" %>
+	    <br>
+	    <h3 class="card-title pull-right"><%= card.firstname %> <%= card.lastname %></h3>
+	    <br>
+	    <br>
+	    <br>
+	    <%= link_to "", card, class: "card-remove-btn pull-right glyphicon glyphicon-remove", method: :delete %>
+	  </div>
   <% end %>
 </div>

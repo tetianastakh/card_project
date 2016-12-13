@@ -3,10 +3,10 @@
     <%= form_for @card do |f| %>
       <%= f.label :firstname, "First Name: " %>
       <%= f.text_field :firstname, placeholder: 'First name', class:'form-control' %>
-
+      <br>
       <%= f.label :lastname, "Last Name: " %>
       <%= f.text_field :lastname, placeholder: 'Last name', class:'form-control' %>
-
+      <br>
       <%= f.submit "Save Card", class:'btn btn-success' %>
     <% end %>
   </div>

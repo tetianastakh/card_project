@@ -12,6 +12,10 @@
 		    <ul class="nav navbar-nav navbar-left">
 		      <% if logged_in? %>
 		        <li><%= link_to "Cards", cards_path %></li>
+		      <% end %>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <% if logged_in? %>
 		        <li><%= link_to 'Log out', logout_path, method: "delete"%></li>
 		      <% else %>
 		        <li><%= link_to "Sign up", signup_path %></li>
@@ -21,6 +25,8 @@
 		    </ul>
 		  </nav>
 	  </header>
+	  <div class="everything">
 	  <%= yield %>
+	  </div>
 	</body>
 </html>

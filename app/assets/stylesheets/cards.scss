@@ -1,3 +1,32 @@
-// Place all the styles related to the Cards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.everything {
+	margin-top: 60px;
+}
+
+.card_list {
+  padding-top: 30px;
+  margin-left: 50px;
+}
+
+.card {
+  display: block;
+  float: left;
+  margin: 0px 10px 10px 20px;
+  width: 300px;
+  height: 200px;
+  border: solid lightgrey;
+}
+
+.card-title {
+	margin-right: 10px;
+}
+
+.card-btn {
+	margin-left: 5px;
+}
+
+.card-remove-btn {
+	margin-top: 100px;
+}

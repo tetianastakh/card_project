@@ -1,10 +1,11 @@
 class CardsController < ApplicationController
 	def index
     @cards = Card.all
-  end
-
-  def show
-    @card = Card.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json  { render :json => @cards }
+      format.xml  { render :xml => @cards }
+    end
   end
 
   def new
@@ -13,12 +14,27 @@ class CardsController < ApplicationController
 
   def edit
     @card = Card.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.json  { render :json => @card }
+      format.xml  { render :xml => @card }
+    end
   end
 
   def create
     @card = Card.new(card_params)
-      if @card.save
-      redirect_to cards_url
+    if @card.save
+    	respond_to do |format|
+	    	format.html {redirect_to cards_url}
+	      format.json { 
+	                   Card.create(card_params)
+	                   render text: Card.last.to_json
+	                  }
+	      format.xml { 
+                     Card.create(card_params)
+                     render text: Card.last.to_xml
+                    }
+	    end
     else
       render 'new'
     end
@@ -30,13 +46,6 @@ class CardsController < ApplicationController
       redirect_to cards_url
     else
       render 'edit'
-    end
-  end
-
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] = "Please log in!"
-      redirect_to login_url
     end
   end
 

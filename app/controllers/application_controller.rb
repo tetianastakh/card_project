@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  include ActionController::MimeResponds
   protect_from_forgery with: :exception
 
   def logged_in_user
