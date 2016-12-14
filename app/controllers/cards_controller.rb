@@ -10,10 +10,17 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
+    @card.fields.build
+    respond_to do |format|
+      format.html
+      format.json  { render :json => @card }
+      format.xml  { render :xml => @card }
+    end
   end
 
   def edit
     @card = Card.find(params[:id])
+    @card.fields.build
     respond_to do |format|
       format.html 
       format.json  { render :json => @card }
@@ -25,15 +32,9 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
     if @card.save
     	respond_to do |format|
-	    	format.html {redirect_to cards_url}
-	      format.json { 
-	                   Card.create(card_params)
-	                   render text: Card.last.to_json
-	                  }
-	      format.xml { 
-                     Card.create(card_params)
-                     render text: Card.last.to_xml
-                    }
+	    	format.html { redirect_to cards_url }
+	      format.json { render json: @card }
+	      format.xml { render json: @card }
 	    end
     else
       render 'new'
@@ -43,7 +44,11 @@ class CardsController < ApplicationController
   def update
     @card = Card.find(params[:id])
     if @card.update_attributes(card_params)
-      redirect_to cards_url
+      respond_to do |format|
+        format.html { redirect_to cards_url }
+        format.json { render json: @cards }
+        format.xml { render json: @cards }
+      end
     else
       render 'edit'
     end
@@ -51,12 +56,16 @@ class CardsController < ApplicationController
 
   def destroy
     Card.find(params[:id]).destroy
-    redirect_to cards_url
+    respond_to do |format|
+      format.html { redirect_to cards_url }
+      format.json { render json: @cards }
+      format.xml { render json: @cards }
+    end
   end
 
   private
   
   def card_params
-    params.require(:card).permit(:firstname, :lastname)
+    params.require(:card).permit(:firstname, :lastname, :card_photo, fields_attributes: [:id, :name, :description, :_destroy])
   end
 end

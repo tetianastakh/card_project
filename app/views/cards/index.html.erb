@@ -3,13 +3,16 @@
 <div class="card_list">
   <% @cards.each do |card| %>
     <div class="card card-block">
+      <%= link_to '', card, class: "pull-right glyphicon glyphicon-remove", method: :delete %>
 	    <%= link_to '', edit_card_path(card.id), class: "pull-right glyphicon glyphicon-pencil" %>
+	    <%= image_tag card.card_photo.url(:thumb), class: "pull-left" %>
 	    <br>
-	    <h3 class="card-title pull-right"><%= card.firstname %> <%= card.lastname %></h3>
-	    <br>
-	    <br>
-	    <br>
-	    <%= link_to "", card, class: "card-remove-btn pull-right glyphicon glyphicon-remove", method: :delete %>
+	    <h4 class="card-title pull-right">First name: <%= card.firstname %> <br>Last name: <%= card.lastname %></h4>
+	    <% if card.fields.any? %>
+	      <% card.fields.each do |field| %>
+	        <h4 class="dynamic pull-right"><%=field.name%>: <%=field.description%></h4>
+	      <% end %>
+	    <% end %>
 	  </div>
   <% end %>
 </div>

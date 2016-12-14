@@ -7,15 +7,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       respond_to do |format|
-        format.html {redirect_to cards_url}
-        format.json { 
-                     User.create(card_params)
-                     render text: User.last.to_json
-                    }
-        format.xml { 
-                     User.create(user_params)
-                     render text: User.last.to_xml
-                    }
+        format.html { redirect_to cards_url }
+        format.json { render json: @card }
+        format.xml { render json: @card }
       end
       log_in @user
     else

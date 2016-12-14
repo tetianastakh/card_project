@@ -1,12 +1,23 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
-    <%= form_for @card do |f| %>
+    <%= nested_form_for @card do |f| %>
       <%= f.label :firstname, "First Name: " %>
       <%= f.text_field :firstname, placeholder: 'First name', class:'form-control' %>
       <br>
       <%= f.label :lastname, "Last Name: " %>
       <%= f.text_field :lastname, placeholder: 'Last name', class:'form-control' %>
       <br>
+      <%= f.file_field :card_photo %>
+      <br>
+      <h4> Dynamic fields: </h4>
+      <%= f.fields_for :fields do |field| %>
+        <%= field.text_field :name, class:"form-control", placeholder: 'Field name' %><br>
+        <%= field.text_field :description, class:"form-control", placeholder: 'Field text' %>
+        <%= field.link_to_remove "Remove this field" %></br></br>
+      <% end %>
+        <% if @card.fields.count < 3 %>
+          <%= f.link_to_add "Add field", :fields, class:'btn btn-default' %></br></br>
+        <% end %>
       <%= f.submit "Save Card", class:'btn btn-success' %>
     <% end %>
   </div>

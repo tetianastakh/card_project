@@ -19,8 +19,9 @@
   border: solid lightgrey;
 }
 
-.card-title {
+.card-title, .dynamic {
 	margin-right: 10px;
+	width: 150px;
 }
 
 .card-btn {

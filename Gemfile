@@ -8,10 +8,10 @@ gem 'mysql'
 gem 'bcrypt'
 gem 'devise'
 gem 'omniauth-facebook'
-gem 'rails-api'
-gem 'active_model_serializers'
 gem 'bootstrap-sass'
-gem "paranoia"
+gem 'paranoia'
+gem 'paperclip'
+gem "nested_form"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

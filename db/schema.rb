@@ -11,17 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213100445) do
+ActiveRecord::Schema.define(version: 20161214130936) do
 
   create_table "cards", force: :cascade do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "firstname",  limit: 255
-    t.string   "lastname",   limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "firstname",               limit: 255
+    t.string   "lastname",                limit: 255
     t.datetime "deleted_at"
+    t.string   "card_photo_file_name",    limit: 255
+    t.string   "card_photo_content_type", limit: 255
+    t.integer  "card_photo_file_size",    limit: 4
+    t.datetime "card_photo_updated_at"
   end
 
   add_index "cards", ["deleted_at"], name: "index_cards_on_deleted_at", using: :btree
+
+  create_table "fields", force: :cascade do |t|
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.string   "card_id",     limit: 255
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname",        limit: 255
