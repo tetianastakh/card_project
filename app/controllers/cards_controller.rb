@@ -1,10 +1,19 @@
 class CardsController < ApplicationController
 	def index
-    @cards = Card.all
-    respond_to do |format|
-      format.html
-      format.json  { render :json => @cards }
-      format.xml  { render :xml => @cards }
+    if params[:search].blank?
+      @cards = Card.all
+      respond_to do |format|
+        format.html
+        format.json  { render :json => @cards }
+        format.xml  { render :xml => @cards }
+      end
+    else
+      @cards = Card.search(params[:search]).results
+      respond_to do |format|
+        format.html
+        format.json  { render :json => @cards }
+        format.xml  { render :xml => @cards }
+      end
     end
   end
 

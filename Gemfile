@@ -11,7 +11,9 @@ gem 'omniauth-facebook'
 gem 'bootstrap-sass'
 gem 'paranoia'
 gem 'paperclip'
-gem "nested_form"
+gem 'nested_form'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
