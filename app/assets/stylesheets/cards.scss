@@ -6,6 +6,7 @@
 }
 
 .card_list {
+  width: 70%;
   padding-top: 30px;
   margin-left: 50px;
 }
@@ -14,7 +15,7 @@
   display: block;
   float: left;
   margin: 0px 10px 10px 20px;
-  width: 300px;
+  width: 305px;
   height: 200px;
   border: solid lightgrey;
   img {
@@ -38,5 +39,9 @@
 
 .search {
   margin-top: 10px;
-  margin-right: 10px;
+  margin-right: 30px;
+}
+
+.dropdown-toggle {
+  width: 200px;
 }

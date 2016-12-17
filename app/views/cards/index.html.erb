@@ -7,6 +7,30 @@
 	    <%= submit_tag "Go", name: nil %>
 	  </p>
 	<% end %>
+	<br>
+	<div class='pull-right'>
+		<% if params[:search].blank? %>
+		  <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" style="color:white">Sort order
+        <span class="caret" style="color:white"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+          <li role="presentation" role="menuitem" tabindex="-1" ><%= link_to "Newest first", cards_path(:order_by => 'desc') %></li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation" role="menuitem" tabindex="-1" ><%= link_to "Oldest first", cards_path(:order_by => 'asc') %></li>
+        </ul>
+      </div>
+      <br>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" style="color:white">Filter by card photo
+        <span class="caret" style="color:white"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+          <li role="presentation" role="menuitem" tabindex="-1" ><%= link_to "With card photo", cards_path(:with_card_photo => true) %></li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation" role="menuitem" tabindex="-1" ><%= link_to "Without card photo", cards_path(:without_card_photo => true) %></li>
+        </ul>
+      </div>
+		<% end %>
+	</div>
 </div>
 <br>
 <div class="card_list">
@@ -19,7 +43,7 @@
 	    <h4 class="card-title pull-right">First name: <%= card.firstname %> <br>Last name: <%= card.lastname %></h4>
 	    <% if card.fields.any? %>
 	      <% card.fields.each do |field| %>
-	        <h4 class="dynamic pull-right"><%=field.name%>: <%=field.description%></h4>
+	        <span class="dynamic pull-right"><%=field.name%>: <%=field.description%></span><br>
 	      <% end %>
 	    <% end %>
 	  </div>
