@@ -42,6 +42,10 @@ class CardsController < ApplicationController
     formats_with_redirect
   end
 
+  def search
+    @cards = Card.search(params[:search]).results
+  end
+
   private
   
   def card_params
@@ -61,17 +65,16 @@ class CardsController < ApplicationController
     end
   end
 
+  def search
+    @cards = Card.search(params[:search]).results
+  end
+
   def order
     if params[:order_by]
       params[:order_by]
     else
       "DESC"
     end
-  end
-
-  def search
-    @cards = Card.search(params[:search]).results
-    formats
   end
 
   def formats
