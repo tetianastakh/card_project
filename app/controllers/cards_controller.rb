@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :new, :edit, :update, :destroy]
 	def index
     if params[:search].blank?
       filter
@@ -63,10 +64,6 @@ class CardsController < ApplicationController
       @cards = Card.all.order("created_at #{order}")
       formats
     end
-  end
-
-  def search
-    @cards = Card.search(params[:search]).results
   end
 
   def order

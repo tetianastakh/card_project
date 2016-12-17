@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :users
   resources :cards
   resources :fields
-  # resources :cards do
-  #   resources :fields
-  # end
+  resources :cards do
+    resources :fields
+  end
   get 'sessions/new' 
   get    'signup'  => 'users#new'
   post 'signup'  => 'users#create'
