@@ -1,28 +1,27 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Used:
 
-Things you may want to cover:
+* Ruby on rails
 
-* Ruby version
+* Mysql (for development and test environments)
 
-* System dependencies
+* Postgresql (for production environment)
 
-* Configuration
+* Devise + omniauth-facebook (for Facebook authorization)
 
-* Database creation
+* Paperclip (for images upload)
 
-* Database initialization
+* Nested form (for dynamic fields)
 
-* How to run the test suite
+* Elasticsearch + Bonsai Elasticsearch add-on for search on all fields
 
-* Services (job queues, cache servers, search engines, etc.)
+* Rspec (for tests)
 
-* Deployment instructions
+* Heroku (for deploy)
 
-* ...
+Rake tasks for reindexing Card model:
+localhost: bundle exec rake environment elasticsearch:import:model CLASS='Card' FORCE=true
+heroku: heroku run bundle exec rake environment elasticsearch:import:model CLASS='Card' FORCE=true
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Heroku: https://evening-anchorage-18311.herokuapp.com/
